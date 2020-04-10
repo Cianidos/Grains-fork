@@ -1,26 +1,30 @@
 package com.grains;
 
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 import java.util.HashMap;
 
-public class STest extends State implements debugble {
+public class STest extends State /*implements debugble*/ {
     HashMap<Integer, Balls> balls;
-    HashMap<Integer, Walls> walls;
     ShapeRenderer shapeRenderer;
+    BitmapFont bitmapFont;
 
     @Override
     public void init() {
         Balls.setToucheble();
         //Balls.config(1,false,false);
         balls = new HashMap<Integer, Balls>();
-        for (int i = 0; i < 100; i++) {
+       // bitmapFont = new BitmapFont(Gdx.files.internal("./assets/hello.fnt"));
+
+        for (int i = 0; i < 1000; i++) {
             balls.put(i, Balls.makeBall());
         }
-        walls = new HashMap<>();
         shapeRenderer = new ShapeRenderer();
+        Balls.width /=2;
+        Balls.height /=2;
     }
 
     @Override
@@ -43,8 +47,9 @@ public class STest extends State implements debugble {
         for(Balls ball : balls.values()) {
             ball.draw(batch);
         }
+        bitmapFont.draw(batch, "hello", 500, 500);
     }
-    @Override
+    //@Override
     public void dRender() {
         shapeRenderer.setAutoShapeType(true);
         shapeRenderer.begin();
@@ -69,7 +74,7 @@ public class STest extends State implements debugble {
     @Override
     public void update(float deltaTime) {
         for(Balls ball : balls.values()) {
-            ball.update(walls, deltaTime);
+            ball.update(deltaTime);
         }
     }
 

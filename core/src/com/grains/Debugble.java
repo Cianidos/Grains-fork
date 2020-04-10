@@ -1,5 +1,5 @@
 package com.grains;
 
-public interface debugble {
+public interface Debugble {
     void dRender();
 }

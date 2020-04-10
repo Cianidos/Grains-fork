@@ -13,6 +13,6 @@ class Control {
     }
 
     static Vector2 TouchPoint(){
-        return new Vector2(Gdx.input.getX(), Gdx.graphics.getHeight()- Gdx.input.getY());
+        return new Vector2(Gdx.input.getX(), Gdx.graphics.getHeight() - Gdx.input.getY());
     }
 }

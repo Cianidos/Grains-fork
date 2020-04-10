@@ -10,6 +10,7 @@ import com.badlogic.gdx.math.Vector2;
 import java.awt.HeadlessException;
 
 
+
 public class MainGame extends ApplicationAdapter {
 	private  SpriteBatch batch;
 	public   StateManager sMngr;
@@ -28,6 +29,9 @@ public class MainGame extends ApplicationAdapter {
 		HEIGHT_K = Gdx.graphics.getHeight() / 720f;
 
 		batch = new SpriteBatch();
+
+		Gdx.gl.glClearColor(1, 1, 1, 1);
+		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
 		sGame = new SGame(HEIGHT_K);
 		sSettings = new SSettings(WIDTH_K, HEIGHT_K);

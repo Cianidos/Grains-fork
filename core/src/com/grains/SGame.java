@@ -6,12 +6,12 @@ import com.badlogic.gdx.math.Vector2;
 
 public class SGame extends State {
 
-    private Walls setts;
+    private Button setts;
 
     public SGame(float HEIGHT_K) {
         Balls.MakeAllBalls(100);
         Balls.config(HEIGHT_K, true, false);
-        setts = new Walls(new Vector2(0, 0), 0.5f * HEIGHT_K, 0.5f * HEIGHT_K, new Texture("settgear.png"));
+        setts = new Button(new Vector2(0, 0), 0.5f * HEIGHT_K, 0.5f * HEIGHT_K, new Texture("settgear.png"));
     }
 
     @Override
@@ -42,7 +42,7 @@ public class SGame extends State {
 
     @Override
     public void update(float deltaTime) {
-        Balls.updateAll(Walls.wallsMap, deltaTime);
+        Balls.updateAll(deltaTime);
     }
 
     @Override

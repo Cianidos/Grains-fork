@@ -7,39 +7,39 @@ import com.badlogic.gdx.math.Vector2;
 public class SSettings extends State {
 
     //private float ballSize = 1;
-    private Walls Texture;
-    private Walls Count;
-    private Walls CountValue;
-    private Walls Bounds;
-    private Walls BoundsValue;
-    private Walls Gravity;
-    private Walls GravityValue;
-    private Walls Size;
-    private Walls SizeValue;
-    private Walls Friction;
-    private Walls FrictionValue;
-    private Walls Speed;
-    private Walls SpeedValue;
-    private Walls setts;
+    private Button Texture;
+    private Button Count;
+    private Button CountValue;
+    private Button Bounds;
+    private Button BoundsValue;
+    private Button Gravity;
+    private Button GravityValue;
+    private Button Size;
+    private Button SizeValue;
+    private Button Friction;
+    private Button FrictionValue;
+    private Button Speed;
+    private Button SpeedValue;
+    private Button setts;
 
 
     public SSettings(float WIDTH_K, float HEIGHT_K) {
-        Count =         new Walls(new Vector2(200 * WIDTH_K, 600 * HEIGHT_K), 1 * HEIGHT_K,1 * HEIGHT_K, new Texture("balls.png"));
-        CountValue =    new Walls(new Vector2(250 * WIDTH_K, 500 * HEIGHT_K), 1,1, new Texture("100.png"));
+        Count =         new Button(new Vector2(200 * WIDTH_K, 600 * HEIGHT_K), 1 * HEIGHT_K,1 * HEIGHT_K, new Texture("balls.png"));
+        CountValue =    new Button(new Vector2(250 * WIDTH_K, 500 * HEIGHT_K), 1,1, new Texture("100.png"));
         CountValue.id = 100;
-        Size =          new Walls(new Vector2(200 * WIDTH_K, 350 * HEIGHT_K), 1 * HEIGHT_K,1 * HEIGHT_K, new Texture("size.png"));
-        SizeValue =     new Walls(new Vector2(200 * WIDTH_K, 250 * HEIGHT_K), 1 * HEIGHT_K,1 * HEIGHT_K, new Texture("x1.png"));
-        Bounds =        new Walls(new Vector2(500 * WIDTH_K, 600 * HEIGHT_K), 1 * HEIGHT_K,1 * HEIGHT_K, new Texture("bounds.png"));
-        BoundsValue =   new Walls(new Vector2(500 * WIDTH_K, 500 * HEIGHT_K), 1 * HEIGHT_K,1 * HEIGHT_K, new Texture("on.png"));
-        Gravity =       new Walls(new Vector2(800 * WIDTH_K, 600 * HEIGHT_K), 1 * HEIGHT_K,1 * HEIGHT_K, new Texture("gravity.png"));
-        GravityValue =  new Walls(new Vector2(800 * WIDTH_K, 500 * HEIGHT_K), 1 * HEIGHT_K,1 * HEIGHT_K, new Texture("off.png"));
-        Friction =      new Walls(new Vector2(500 * WIDTH_K, 350 * HEIGHT_K), 1 * HEIGHT_K,1 * HEIGHT_K, new Texture("friction.png"));
-        FrictionValue = new Walls(new Vector2(500 * WIDTH_K, 250 * HEIGHT_K), 1 * HEIGHT_K,1 * HEIGHT_K, new Texture("none.png"));
-        Speed =         new Walls(new Vector2(800 * WIDTH_K, 350 * HEIGHT_K), 1 * HEIGHT_K,1 * HEIGHT_K, new Texture("speed.png"));
-        SpeedValue =    new Walls(new Vector2(800 * WIDTH_K, 250 * HEIGHT_K), 1 * HEIGHT_K,1 * HEIGHT_K, new Texture("low.png"));
+        Size =          new Button(new Vector2(200 * WIDTH_K, 350 * HEIGHT_K), 1 * HEIGHT_K,1 * HEIGHT_K, new Texture("size.png"));
+        SizeValue =     new Button(new Vector2(200 * WIDTH_K, 250 * HEIGHT_K), 1 * HEIGHT_K,1 * HEIGHT_K, new Texture("x1.png"));
+        Bounds =        new Button(new Vector2(500 * WIDTH_K, 600 * HEIGHT_K), 1 * HEIGHT_K,1 * HEIGHT_K, new Texture("bounds.png"));
+        BoundsValue =   new Button(new Vector2(500 * WIDTH_K, 500 * HEIGHT_K), 1 * HEIGHT_K,1 * HEIGHT_K, new Texture("on.png"));
+        Gravity =       new Button(new Vector2(800 * WIDTH_K, 600 * HEIGHT_K), 1 * HEIGHT_K,1 * HEIGHT_K, new Texture("gravity.png"));
+        GravityValue =  new Button(new Vector2(800 * WIDTH_K, 500 * HEIGHT_K), 1 * HEIGHT_K,1 * HEIGHT_K, new Texture("off.png"));
+        Friction =      new Button(new Vector2(500 * WIDTH_K, 350 * HEIGHT_K), 1 * HEIGHT_K,1 * HEIGHT_K, new Texture("friction.png"));
+        FrictionValue = new Button(new Vector2(500 * WIDTH_K, 250 * HEIGHT_K), 1 * HEIGHT_K,1 * HEIGHT_K, new Texture("none.png"));
+        Speed =         new Button(new Vector2(800 * WIDTH_K, 350 * HEIGHT_K), 1 * HEIGHT_K,1 * HEIGHT_K, new Texture("speed.png"));
+        SpeedValue =    new Button(new Vector2(800 * WIDTH_K, 250 * HEIGHT_K), 1 * HEIGHT_K,1 * HEIGHT_K, new Texture("low.png"));
         SpeedValue.id = 2;
-        Texture =       new Walls(new Vector2(1000 * WIDTH_K, 400 * HEIGHT_K), 5 * HEIGHT_K,5 * HEIGHT_K, new Texture("bullet_t_3s.png"));
-        setts =         new Walls(new Vector2(0, 0), 0.5f * HEIGHT_K, 0.5f * HEIGHT_K, new Texture("settgear.png"));
+        Texture =       new Button(new Vector2(1000 * WIDTH_K, 400 * HEIGHT_K), 5 * HEIGHT_K,5 * HEIGHT_K, new Texture("bullet_t_3s.png"));
+        setts =         new Button(new Vector2(0, 0), 0.5f * HEIGHT_K, 0.5f * HEIGHT_K, new Texture("settgear.png"));
 
     }
 

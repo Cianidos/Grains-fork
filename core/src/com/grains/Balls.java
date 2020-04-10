@@ -12,7 +12,6 @@ import java.util.Random;
 public class Balls {
     //private static Sound tuck = Gdx.audio.newSound(Gdx.files.internal("boom.wav"));
     private final static Random             rand = new Random();
-    static float                            Scale;
     static Texture                          texture = new Texture("bullet_t_3s.png");
     static float                            velK = 10f;
     static float                            Friction = 1;
@@ -35,14 +34,12 @@ public class Balls {
         toucheble = !toucheble;
     }
     static void         config (float scale, boolean boarders, boolean gravity) {
-        Scale = scale;
         isBoarders = boarders;
         isGravity = gravity;
     }
-    static void         updateAll (Map<Integer, Walls> walls, float deltaTime) {
-        //Balls.up_rule_balls_to_balls_x2();
+    static void         updateAll ( float deltaTime) {
         for (int i = 0; i < ballsMap.size(); i++) {
-            ballsMap.get(i).update(walls, deltaTime);
+            ballsMap.get(i).update(deltaTime);
         }
     }
     static void         drawAll (SpriteBatch batch) {
@@ -68,28 +65,18 @@ public class Balls {
             ballsMap.remove(ballsMap.size() - 1);
         }
     }
-    public void         update (Map<Integer, Walls> walls, float deltaTime) {
+    public void         update (float deltaTime) {
         this.up_rule_motion(deltaTime);
-        //this.up_rule_touch();
-        //this.up_rule_brakets();
         if (isBoarders) {
-            //if (!isGravity) {
             this.up_rule_brakets_soundless();
-            //}
-            this.up_rule_out_wall(walls);
         } else {
             this.up_rule_unbrakets_soundless();
         }
 
         this.up_rule_to_touch();
-        //this.up_rule_speed_limit();
         if (isGravity) {
             this.up_rule_gravity(deltaTime);
-            //this.up_rule_grave_brakets_soundless();
         }
-        //this.up_rule_min_velocity();
-        //this.up_rule_in_wall(wall);
-        //Balls.up_rule_balls_to_balls_x2();
     }
     public void         draw (SpriteBatch batch) {
         batch.draw(texture, this.position.x - width/2, this.position.y - height/2, width, height);
@@ -147,60 +134,7 @@ public class Balls {
             this.velocity.add(Gravity.cpy().scl(deltaTime).scl(velK));
         }
     }
-    private void        up_rule_out_wall (Map<Integer, Walls> walls) {
 
-        for (int i = 0; i < walls.size(); i++) {
-
-            Walls wall = walls.get(i);
-            if (wall.touchble) {
-                float tx1 = this.position.x;
-                float tx2 = this.position.x + width / 2;
-                float wx1 = wall.position.x + width / 2;
-                float wx2 = wall.position.x + wall.width - width / 2;
-
-                float ty1 = this.position.y;
-                float ty2 = this.position.y + height / 2;
-                float wy1 = wall.position.y + height / 2;
-                float wy2 = wall.position.y + wall.height - height / 2;
-
-                if ((tx1 <= wx1) &&                       // left wall
-                        (tx2 >= wx1) &&
-                        (ty1 <= wy2) &&
-                        (ty2 >= wy1)) {
-
-                    this.position.x = wall.position.x - width;
-                    this.velocity.x *= -1;
-                }
-
-                if ((tx1 <= wx2) &&                       // right wall
-                        (tx2 >= wx2) &&
-                        (ty1 <= wy2) &&
-                        (ty2 >= wy1)) {
-
-                    this.position.x = wall.position.x + wall.width;
-                    this.velocity.x *= -1;
-                }
-
-                if ((tx2 >= wx1) &&                      // bottom
-                        (tx1 <= wx2) &&
-                        (ty1 <= wy1) &&
-                        (ty2 >= wy1)) {
-
-                    this.position.y = wall.position.y - height;
-                    this.velocity.y *= -1;
-                }
-
-                if ((tx2 >= wx1) &&                      // roof
-                        (tx1 <= wx2) &&
-                        (ty1 <= wy2) &&
-                        (ty2 >= wy2)) {
-
-                    this.position.y = wall.position.y + wall.height;
-                    this.velocity.y *= -1;
-                }
-            }
-        }
-    }
     public boolean overlaps_to_ball(Balls other) {
         float distance = this.position.dst2(other.position);
         return distance < 6;
@@ -215,6 +149,64 @@ public class Balls {
             }
         }
     }
+
+
+    /*
+    private void        up_rule_out_wall (Map<Integer, Button> walls) {
+
+        for (int i = -1; i < walls.size(); i++) {
+
+            Button wall = walls.get(i);
+            if (wall.touchble) {
+                float tx0 = this.position.x;
+                float tx1 = this.position.x + width / 2;
+                float wx0 = wall.position.x + width / 2;
+                float wx1 = wall.position.x + wall.width - width / 2;
+
+                float ty0 = this.position.y;
+                float ty1 = this.position.y + height / 2;
+                float wy0 = wall.position.y + height / 2;
+                float wy1 = wall.position.y + wall.height - height / 2;
+
+                if ((tx0 <= wx1) &&                       // left wall
+                        (tx1 >= wx1) &&
+                        (ty0 <= wy2) &&
+                        (ty1 >= wy1)) {
+
+                    this.position.x = wall.position.x - width;
+                    this.velocity.x *= -2;
+                }
+
+                if ((tx0 <= wx2) &&                       // right wall
+                        (tx1 >= wx2) &&
+                        (ty0 <= wy2) &&
+                        (ty1 >= wy1)) {
+
+                    this.position.x = wall.position.x + wall.width;
+                    this.velocity.x *= -2;
+                }
+
+                if ((tx1 >= wx1) &&                      // bottom
+                        (tx0 <= wx2) &&
+                        (ty0 <= wy1) &&
+                        (ty1 >= wy1)) {
+
+                    this.position.y = wall.position.y - height;
+                    this.velocity.y *= -2;
+                }
+
+                if ((tx1 >= wx1) &&                      // roof
+                        (tx0 <= wx2) &&
+                        (ty0 <= wy2) &&
+                        (ty1 >= wy2)) {
+
+                    this.position.y = wall.position.y + wall.height;
+                    this.velocity.y *= -2;
+                }
+            }
+        }
+    }
+    */
     /*
         private static void up_rule_balls_to_balls_x1() {
     for (int i = 0; i < ballsMap.size(); i++) {

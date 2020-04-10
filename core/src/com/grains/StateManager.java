@@ -33,11 +33,13 @@ public class StateManager {
     public void render(SpriteBatch batch) {
         stateStack.peek().render(batch);
     }
-    public void dBugRender(){if (stateStack.peek() instanceof debugble) {((debugble) stateStack.peek()).dRender();}}
+    public void dBugRender(){if (stateStack.peek() instanceof Debugble) {((Debugble) stateStack.peek()).dRender();}}
     public void update(float deltaTime) {
         stateStack.peek().update(deltaTime);
     }
     public void touch() {
-        stateStack.peek().touch();
+        if (Control.isClicked() || Control.isPressed()) {
+            stateStack.peek().touch();
+        }
     }
 }
